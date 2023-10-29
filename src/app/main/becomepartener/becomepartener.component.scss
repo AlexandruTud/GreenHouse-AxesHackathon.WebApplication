@@ -1,0 +1,33 @@
+label {
+  display: flex;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+
+}
+
+select {
+  color: black;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  color: #000000;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  outline: none;
+  background: transparent;
+  color: white;
+}
+
+label {
+  margin-top: 20px;
+}

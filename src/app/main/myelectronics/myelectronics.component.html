@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="left-side">
+        <div class="products">
+            <app-card *ngFor="let card of cards; let i = index" [card]="cards[i]" [electronicId]="i"
+                (eventEmitter)="cardEmitter($event)"></app-card>
+        </div>
+    </div>
+    <div class="vertical">
+        <div class="btn-area">
+            <button nz-button nzType="primary" (click)="displayModal()">
+                <span>Add electronic</span>
+            </button>
+        </div>
+        <div class="charts">
+            <h2 data-text="You are 60% more eco-friendly than the average people!"
+                style="margin-top:20px;margin-bottom: 20px;">You are 60% more eco-friendly than the average people!</h2>
+            <div class="alert">
+
+
+                <div class="alert-container" [hidden]="pollute">
+                    <div class="alert-card">
+                        <div class="alert-header">
+                            <span class="circle"><i style="background: transparent;font-size:60px; margin-top: 8px; "
+                                    class="bx bx-bell"></i></span>
+                        </div>
+
+                        <div class="alert-content">
+                            <h3 style="color:red;margin-top:10px;">Warning</h3>
+                            <span>Pollution levels have exceeded acceptable limits in your area, indicating a
+                                significant environmental impact that requires immediate attention.</span>
+                            <div class="btn">
+                                <a class="no-border">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="customPopup" class="custom-popup" [hidden]="display">
+            <div class="custom-popup-content">
+                <div class="custom-popup-body">
+                    <form class="form">
+                        <label for="dropdown1" class="label-white">Partner:</label>
+                        <select id="dropdown1" id="partnerName">
+                            <option *ngFor="let optiune of partners; let i = index" [value]="partners[i]">
+                                {{partners[i]}}</option>
+                        </select>
+
+                        <label for="dropdown2">Category:</label>
+                        <select id="dropdown2" id="categoryName">
+                            <option *ngFor="let optiune of categories; let i = index" [value]="categories[i]">
+                                {{categories[i]}}</option>
+                        </select>
+
+                        <label for="dropdown3">Energy Class:</label>
+                        <select id="dropdown3" id="energyClass">
+                            <option *ngFor="let optiune of clasaEnergetica; let i = index" [value]="clasaEnergetica[i]">
+                                {{clasaEnergetica[i]}}
+                            </option>
+                        </select>
+
+                        <label for="dropdown2">Model:</label>
+                        <input placeholder="Model" id="model">
+
+                        <label for="dropdown2">Series:</label>
+                        <input placeholder="Series" id="series">
+
+                        <label for="dropdown2">Energy Consume:</label>
+                        <input placeholder="Energy Consume" id="energyConsume">
+                    </form>
+                </div>
+                <div class="custom-popup-footer">
+                    <button id="confirmCustomDelete" class="btn-confirm" (click)="registerElectronic()">Add</button>
+                    <button id="cancelCustomDelete" class="btn-cancel" (click)="displayModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

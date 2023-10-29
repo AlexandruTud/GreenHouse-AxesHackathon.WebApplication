@@ -1,0 +1,112 @@
+<div class="background">
+  <header id="header" class="menu-container">
+
+    <div class="logo-box">
+      <img src="assets/logo.png" width="48" height="48" alt="Logo" (click)="goToHome()">
+    </div>
+    <nav id="nav-bar">
+
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+      <ul class="menu">
+        <li><a class="nav-link" (click)="goToHome()">Home</a></li>
+        <li><a class="nav-link">About</a></li>
+        <li><a class="nav-link">Features</a></li>
+        <div class="buttons">
+          <a class="highlight" (click)="goToLogin()">Login</a>
+        </div>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero container">
+      <h1 class="hero-title-primary">Green House</h1>
+      <p class="hero-title-sub">A pollution monitoring and alert system app designed to help users maintain a cleaner
+        and healthier environment.</p>
+
+      <button (click)="goToLogin()">Try For Free</button>
+    </section>
+    <div class="hero-image">
+      <figure>
+        <img src="/assets/earth.png" alt="Hero Image" width="500">
+
+      </figure>
+    </div>
+
+  </main>
+
+  <div>
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+      </g>
+    </svg>
+  </div>
+
+  <section class="content" id="content">
+
+    <div class="inner-content">
+      <div class="inner-content-text content__TextLeft">
+        <div id="about" class="inter-content-subtitle">
+          About
+        </div>
+
+        <div class="inner-content-title">
+          Empowering Environmental Guardians
+        </div>
+
+        <div class="inner-content-para">
+          <p>At Green House, we are committed to creating a cleaner and healthier world. Our mission is to provide you
+            with the tools and information you need to monitor and combat environmental pollution.
+
+            Our app offers real-time pollution monitoring and system alerts to empower you to take action and make a
+            positive impact. With Green House, you can stay informed about air and water quality, make informed
+            decisions, and contribute to a greener, more sustainable future.
+
+            Join us in our journey to protect and preserve our planet. Together, we can make a difference.</p>
+        </div>
+      </div>
+
+      <div class="inner-image-container container__ImageRight">
+        <div class="inner-content-image content__ImageRight">
+          <img class="section-images" src="/assets/img1.jpeg" style="object-position: 50% 50%; border-radius: 40px">
+        </div>
+      </div>
+    </div>
+
+    <div class="inner-content">
+      <div class="inner-content-text content__TextRight">
+        <div id="features" class="inter-content-subtitle">
+          Features
+        </div>
+
+        <div class="inner-content-title">
+          Your Eco-Companion for a Cleaner World
+        </div>
+
+        <div class="inner-content-para">
+          <p>Welcome to Green House, where environmental empowerment is at your fingertips. Our app enables you to take
+            control of your environment by monitoring pollution sources, accessing vital statistics, and engaging in
+            eco-challenges to reduce pollution. But that's not all; we've forged valuable partnerships with like-minded
+            organizations, and we offer exclusive deals to support your green journey. Track, act, and partner with
+            Green House for a cleaner, more sustainable world.</p>
+        </div>
+      </div>
+
+      <div class="inner-image-container container__ImageLeft">
+        <div class="inner-content-image content__ImageLeft">
+          <img class="section-images" src="/assets/img2.jpeg" style="object-position: 50% 50%; border-radius: 40px">
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>

@@ -1,0 +1,59 @@
+<div class="grey-bg container-fluid p-2" id="dashh">
+  <div class="row">
+      <div class="col-12 mt-0 mb-1">
+          <h4 class="text-uppercase">Partners</h4>
+      </div>
+  </div>
+  <ul class="suggestion-list" id="suggestionList">
+
+      <li class="suggestion">
+        <div>
+          <img src="assets/kaufland-vector-logo.svg" width="70px">
+        </div>
+          <div class="suggestion-author" style="margin-left: 20px;font-size:30px;">Kaufland</div>
+      </li>
+
+      <li class="suggestion">
+        <div>
+          <img src="assets/flanco.png" width="70px">
+        </div>
+          <div class="suggestion-author" style="margin-left: 20px;font-size:30px;">Flanco</div>
+      </li>
+
+
+      <li class="suggestion">
+        <div>
+          <img src="assets/732221.png" width="70px">
+        </div>
+          <div class="suggestion-author" style="margin-left: 20px;font-size:30px;">Microsoft</div>
+      </li>
+
+      <li class="suggestion">
+        <div>
+          <img src="assets/flanco.png" width="70px">
+        </div>
+          <div class="suggestion-author" style="margin-left: 20px;font-size:30px;">Flanco</div>
+      </li>
+
+  </ul>
+
+  <div class="row">
+    <div class="col-12 mt-0 mb-1">
+        <h4 class="text-uppercase">Become our partner</h4>
+    </div>
+</div>
+  <button class="become" (click)="displayModal()" style="display: flex;">Become Partner Now!</button>
+
+  <div id="customPopup" class="custom-popup" [hidden]="display">
+    <div class="custom-popup-content">
+        <div class="custom-popup-body">
+          <app-becomepartener></app-becomepartener>
+        </div>
+        <div class="custom-popup-footer" >
+            <button id="confirmCustomDelete" class="btn-confirm">Add</button>
+            <button id="cancelCustomDelete" class="btn-cancel" (click)="displayModal()">Cancel</button>
+        </div>
+    </div>
+  </div>
+
+</div>

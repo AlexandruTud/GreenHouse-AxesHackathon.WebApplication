@@ -1,0 +1,12 @@
+<nz-card style="width:300px;" [nzActions]="[actionEdit, actionEllipsis]">
+  <nz-card-meta [nzTitle]="card.model" [nzDescription]="card.categoryName" [nzAvatar]="avatarTemplate"></nz-card-meta>
+</nz-card>
+<ng-template #avatarTemplate>
+  <nz-avatar nzSrc="/assets/logo.png"></nz-avatar>
+</ng-template>
+<ng-template #actionEdit>
+  <span nz-icon nzType="eye" (click)="goToDetails()"></span>
+</ng-template>
+<ng-template #actionEllipsis>
+  <span nz-icon nzType="delete" (click)="delete()"></span>
+</ng-template>

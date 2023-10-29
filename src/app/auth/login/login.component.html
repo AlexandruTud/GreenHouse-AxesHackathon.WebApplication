@@ -1,0 +1,45 @@
+<div class="background">
+    <div class="box">
+        <div id="login-form" [hidden]="showRegistration">
+            <h2>Welcome back</h2>
+            <div class="inputBox">
+                <input type="email" id="loginEmail" required>
+                <label><i class="fa fa-envelope"></i> Email</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" id="loginPassword" required>
+                <label><i class="fa fa-lock"></i> Password</label>
+            </div>
+            <div id="error-message" class="error-message"></div>
+            <button (click)="login()">Login</button>
+            <a class="forgot-password" (click)="toggleRegistration()">Not a user yet?</a>
+        </div>
+
+        <div id="register-form" [hidden]="!showRegistration">
+            <h2>Register now</h2>
+            <div class="inputBox">
+                <input type="email" id="registerEmail" required>
+                <label><i class="fa fa-envelope"></i> Email</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" id="registerPassword" required>
+                <label><i class="fa fa-lock"></i> Password</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" id="password_register" required>
+                <label><i class="fa fa-lock"></i> Confirm Password</label>
+            </div>
+            <div id="error-message" class="error-message"></div>
+            <button (click)="login()">Register</button>
+
+            <div style="display: flex; flex-direction: column; row-gap: 10px;">
+                <div style="display: flex; flex-direction: row; align-items: center; gap: 5px;">
+                    <input type="checkbox" id="newsletter-checkbox">
+                    <label for="newsletter-checkbox" class="forgot-password">Accept terms and conditions</label>
+                </div>
+                <a class="forgot-password" (click)="toggleRegistration()">Already a user? Login here</a>
+            </div>
+        </div>
+
+    </div>
+</div>
