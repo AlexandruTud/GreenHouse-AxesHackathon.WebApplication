@@ -45,6 +45,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ![WhatsApp Image 2023-10-30 at 11 06 27](https://github.com/AlexandruTud/GreenHouse-AxesHackathon.WebApplication/assets/95827917/c8c979ba-7a6d-4ee4-9cd0-7c5e3d530d0d)
 
+--------------
+
+![WhatsApp Image 2023-10-31 at 00 09 19](https://github.com/AlexandruTud/GreenHouse-AxesHackathon.WebApplication/assets/95827917/e193b583-91f8-4bd6-99f9-8f440a136d45)
+
 
 
 
