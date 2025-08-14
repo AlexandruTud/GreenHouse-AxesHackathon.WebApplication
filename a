@@ -1,0 +1,152 @@
+import com.aspose.cells.Workbook;
+import com.aspose.cells.Worksheet;
+import com.aspose.cells.Cells;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.LinkedHashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+public class ArboreGrafic {
+    
+    // Structura unui nod din arbore
+    static class Node {
+        String cont;
+        String nume;
+        java.util.Set<String> departamente = new java.util.LinkedHashSet<>();
+        java.util.List<Node> subordonati = new java.util.ArrayList<>();
+
+        Node(String cont, String nume) {
+            this.cont = cont;
+            this.nume = nume;
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        // Map pentru noduri și relații
+        java.util.Map<String, Node> noduri = new java.util.LinkedHashMap<>();
+        java.util.Map<String, java.util.List<String>> relatii = new java.util.LinkedHashMap<>();
+
+        // Încarcă Excel
+        Workbook wb = new Workbook("input.xlsx");
+        Worksheet sheet = wb.getWorksheets().get(0);
+        Cells cells = sheet.getCells();
+        int lastRow = cells.getMaxDataRow();
+
+        // Citește datele din tabel
+        for (int r = 1; r <= lastRow; r++) {
+            String cont = getString(cells, r, 0);
+            String nume = getString(cells, r, 1);
+            String departament = getString(cells, r, 2);
+            String subordonatCont = getString(cells, r, 3);
+
+            noduri.putIfAbsent(cont, new Node(cont, nume));
+            if (nume != null && !nume.isEmpty()) {
+                noduri.get(cont).nume = nume;
+            }
+            if (departament != null && !departament.isEmpty()) {
+                noduri.get(cont).departamente.add(departament);
+            }
+            if (subordonatCont != null && !subordonatCont.isEmpty()) {
+                relatii.computeIfAbsent(cont, k -> new java.util.ArrayList<>()).add(subordonatCont);
+            }
+        }
+
+        // Creează noduri pentru conturi apărute doar ca subordonate
+        for (java.util.List<String> lista : relatii.values()) {
+            for (String sub : lista) {
+                noduri.putIfAbsent(sub, new Node(sub, ""));
+            }
+        }
+
+        // Conectează părinții cu subordonații
+        for (Map.Entry<String, java.util.List<String>> e : relatii.entrySet()) {
+            Node parinte = noduri.get(e.getKey());
+            for (String sub : e.getValue()) {
+                parinte.subordonati.add(noduri.get(sub));
+            }
+        }
+
+        // Găsește rădăcinile
+        java.util.Set<String> apareCaSub = new java.util.HashSet<>();
+        for (java.util.List<String> lista : relatii.values()) {
+            apareCaSub.addAll(lista);
+        }
+        java.util.List<Node> radacini = new java.util.ArrayList<>();
+        for (Node n : noduri.values()) {
+            if (!apareCaSub.contains(n.cont)) {
+                radacini.add(n);
+            }
+        }
+
+        // Lansează GUI
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Arbore Subordonări");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.add(new ArborePanel(radacini));
+            frame.setSize(1200, 800);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+    }
+
+    static String getString(Cells cells, int row, int col) {
+        Object val = cells.get(row, col).getValue();
+        return val == null ? "" : val.toString().trim();
+    }
+
+    // JPanel care desenează arborele
+    static class ArborePanel extends JPanel {
+        java.util.List<Node> radacini;
+        int nodWidth = 140, nodHeight = 40, vGap = 60, hGap = 30;
+
+        ArborePanel(java.util.List<Node> radacini) {
+            this.radacini = radacini;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            int x = 50;
+            for (Node root : radacini) {
+                desenNode(g2, root, x, 50);
+                x += 300;
+            }
+        }
+
+        int desenNode(Graphics2D g2, Node node, int x, int y) {
+            // Textul din nod
+            String label = node.cont + (node.nume != null && !node.nume.isEmpty() ? " " + node.nume : "");
+            if (!node.departamente.isEmpty()) {
+                label += " " + node.departamente;
+            }
+
+            // Desen dreptunghi
+            g2.setColor(Color.WHITE);
+            g2.fillRect(x, y, nodWidth, nodHeight);
+            g2.setColor(Color.BLACK);
+            g2.drawRect(x, y, nodWidth, nodHeight);
+
+            // Text în interior
+            g2.drawString(label, x + 5, y + 20);
+
+            // Desenează subordonații
+            int childX = x;
+            int childY = y + nodHeight + vGap;
+
+            for (Node sub : node.subordonati) {
+                g2.drawLine(x + nodWidth / 2, y + nodHeight, childX + nodWidth / 2, childY);
+                int usedWidth = desenNode(g2, sub, childX, childY);
+                childX += usedWidth + hGap;
+            }
+
+            int totalWidth = Math.max(nodWidth, (childX - x - hGap));
+            return totalWidth;
+        }
+    }
+}
